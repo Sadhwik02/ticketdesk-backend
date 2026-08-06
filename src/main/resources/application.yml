@@ -1,0 +1,115 @@
+spring:
+  application:
+    name: TicketDesk
+
+  # ===== DataSource Configuration =====
+  datasource:
+    url: jdbc:mysql://localhost:3306/ticketdesk_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: Sadhwik@2004
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: TicketDeskHikariPool
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 1800000
+
+  # ===== JPA / Hibernate Configuration =====
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        use_sql_comments: false
+        jdbc:
+          batch_size: 30
+        order_inserts: true
+        order_updates: true
+    open-in-view: false
+
+  # ===== File Upload Configuration =====
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  # ===== Security Config =====
+  security:
+    user:
+      name: admin
+      password: admin123
+
+# ===== Server Configuration =====
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# ===== JWT Configuration =====
+app:
+  jwt:
+    secret: 5A7134743777217A25432A462D4A614E645267556B58703273357638792F413F
+    access-token-expiration-ms: 900000       # 15 minutes
+    refresh-token-expiration-ms: 604800000   # 7 days
+  file:
+    upload-dir: uploads
+    allowed-types: image/jpeg,image/png,application/pdf
+    max-file-size: 10485760   # 10 MB in bytes
+
+# ===== Actuator Configuration =====
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when_authorized
+  info:
+    env:
+      enabled: true
+
+# ===== Application Info =====
+info:
+  app:
+    name: TicketDesk
+    description: Enterprise IT Support Ticket Management System
+    version: 1.0.0
+    java-version: 21
+
+# ===== SpringDoc / Swagger =====
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    display-request-duration: true
+    groups-order: ASC
+    operations-sorter: method
+    disable-swagger-default-url: true
+  show-actuator: false
+
+# ===== Logging =====
+logging:
+  level:
+    root: INFO
+    com.ticketdesk: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/ticketdesk.log
+    max-size: 10MB
+    max-history: 30

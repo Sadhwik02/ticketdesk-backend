@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+app:
+  jwt:
+    secret: 5A7134743777217A25432A462D4A614E645267556B58703273357638792F413F
+    access-token-expiration-ms: 900000
+    refresh-token-expiration-ms: 604800000
+  file:
+    upload-dir: target/test-uploads
+    allowed-types: image/jpeg,image/png,application/pdf
+    max-file-size: 10485760

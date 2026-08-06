@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="UltimateRestApiCache">
+    <cachedApis>
+      <api method="GET" url="/search/tickets" className="com.ticketdesk.controller.SearchController" methodName="searchTickets" moduleName="ticketdesk" description="Search tickets with multiple optional filters">
+        <params>
+          <param name="keyword" value="" type="QUERY" dataType="String" />
+          <param name="status" value="" type="QUERY" dataType="TicketStatus" />
+          <param name="priority" value="" type="QUERY" dataType="TicketPriority" />
+          <param name="category" value="" type="QUERY" dataType="TicketCategory" />
+          <param name="engineerId" value="" type="QUERY" dataType="Long" />
+          <param name="startDate" value="" type="QUERY" dataType="LocalDate" />
+          <param name="endDate" value="" type="QUERY" dataType="LocalDate" />
+          <param name="page" value="" type="QUERY" dataType="int" />
+          <param name="size" value="" type="QUERY" dataType="int" />
+          <param name="sortBy" value="" type="QUERY" dataType="String" />
+          <param name="sortDir" value="" type="QUERY" dataType="String" />
+        </params>
+      </api>
+      <api method="POST" url="/auth/register" className="com.ticketdesk.controller.AuthController" methodName="register" moduleName="ticketdesk" description="Register a new user">
+        <params>
+          <param name="body" value="{&#13;&#10;  &quot;firstName&quot; : &quot;&quot;,&#13;&#10;  &quot;lastName&quot; : &quot;&quot;,&#13;&#10;  &quot;username&quot; : &quot;&quot;,&#13;&#10;  &quot;email&quot; : &quot;&quot;,&#13;&#10;  &quot;password&quot; : &quot;&quot;,&#13;&#10;  &quot;phone&quot; : &quot;&quot;,&#13;&#10;  &quot;department&quot; : &quot;&quot;,&#13;&#10;  &quot;role&quot; : &quot;ADMIN&quot;&#13;&#10;}" type="BODY" dataType="RegisterRequest" />
+        </params>
+      </api>
+      <api method="POST" url="/auth/login" className="com.ticketdesk.controller.AuthController" methodName="login" moduleName="ticketdesk" description="Login and obtain JWT tokens">
+        <params>
+          <param name="body" value="{&#13;&#10;  &quot;usernameOrEmail&quot; : &quot;&quot;,&#13;&#10;  &quot;password&quot; : &quot;&quot;&#13;&#10;}" type="BODY" dataType="LoginRequest" />
+        </params>
+      </api>
+      <api method="POST" url="/auth/refresh-token" className="com.ticketdesk.controller.AuthController" methodName="refreshToken" moduleName="ticketdesk" description="Refresh access token using a valid refresh token">
+        <params>
+          <param name="body" value="{&#13;&#10;  &quot;refreshToken&quot; : &quot;&quot;&#13;&#10;}" type="BODY" dataType="RefreshTokenRequest" />
+        </params>
+      </api>
+      <api method="POST" url="/auth/logout" className="com.ticketdesk.controller.AuthController" methodName="logout" moduleName="ticketdesk" description="Logout and revoke the refresh token">
+        <params>
+          <param name="body" value="{&#13;&#10;  &quot;refreshToken&quot; : &quot;&quot;&#13;&#10;}" type="BODY" dataType="RefreshTokenRequest" />
+        </params>
+      </api>
+      <api method="POST" url="/auth/change-password" className="com.ticketdesk.controller.AuthController" methodName="changePassword" moduleName="ticketdesk" description="Change password for the currently authenticated user">
+        <params>
+          <param name="body" value="{&#13;&#10;  &quot;currentPassword&quot; : &quot;&quot;,&#13;&#10;  &quot;newPassword&quot; : &quot;&quot;,&#13;&#10;  &quot;confirmPassword&quot; : &quot;&quot;&#13;&#10;}" type="BODY" dataType="ChangePasswordRequest" />
+        </params>
+      </api>
+      <api method="POST" url="/auth/forgot-password" className="com.ticketdesk.controller.AuthController" methodName="forgotPassword" moduleName="ticketdesk" description="Request a password reset token (sent via email)">
+        <params>
+          <param name="body" value="{&#13;&#10;  &quot;email&quot; : &quot;&quot;&#13;&#10;}" type="BODY" dataType="ForgotPasswordRequest" />
+        </params>
+      </api>
+      <api method="POST" url="/auth/reset-password" className="com.ticketdesk.controller.AuthController" methodName="resetPassword" moduleName="ticketdesk" description="Reset password using the token received via email">
+        <params>
+          <param name="body" value="{&#13;&#10;  &quot;token&quot; : &quot;&quot;,&#13;&#10;  &quot;newPassword&quot; : &quot;&quot;,&#13;&#10;  &quot;confirmPassword&quot; : &quot;&quot;&#13;&#10;}" type="BODY" dataType="ResetPasswordRequest" />
+        </params>
+      </api>
+      <api method="POST" url="/tickets/{ticketId}/comments" className="com.ticketdesk.controller.CommentController" methodName="addComment" moduleName="ticketdesk" description="Add a comment to a ticket">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+          <param name="body" value="{&#13;&#10;  &quot;comment&quot; : &quot;&quot;&#13;&#10;}" type="BODY" dataType="CommentRequest" />
+        </params>
+      </api>
+      <api method="GET" url="/tickets/{ticketId}/comments" className="com.ticketdesk.controller.CommentController" methodName="getTicketComments" moduleName="ticketdesk" description="Get all comments for a ticket (newest first)">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+          <param name="page" value="" type="QUERY" dataType="int" />
+          <param name="size" value="" type="QUERY" dataType="int" />
+        </params>
+      </api>
+      <api method="PUT" url="/comments/{commentId}" className="com.ticketdesk.controller.CommentController" methodName="updateComment" moduleName="ticketdesk" description="Update a comment">
+        <params>
+          <param name="commentId" value="1" type="PATH" dataType="Long" />
+          <param name="body" value="{&#13;&#10;  &quot;comment&quot; : &quot;&quot;&#13;&#10;}" type="BODY" dataType="CommentRequest" />
+        </params>
+      </api>
+      <api method="DELETE" url="/comments/{commentId}" className="com.ticketdesk.controller.CommentController" methodName="deleteComment" moduleName="ticketdesk" description="Delete a comment">
+        <params>
+          <param name="commentId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+      <api method="GET" url="/dashboard/stats" className="com.ticketdesk.controller.DashboardController" methodName="getDashboardStats" moduleName="ticketdesk" description="Get full dashboard statistics (Admin and Support Engineer)" />
+      <api method="POST" url="/tickets" className="com.ticketdesk.controller.TicketController" methodName="createTicket" moduleName="ticketdesk" description="Create a new support ticket">
+        <params>
+          <param name="body" value="{&#13;&#10;  &quot;title&quot; : &quot;&quot;,&#13;&#10;  &quot;description&quot; : &quot;&quot;,&#13;&#10;  &quot;category&quot; : &quot;SOFTWARE&quot;,&#13;&#10;  &quot;priority&quot; : &quot;LOW&quot;&#13;&#10;}" type="BODY" dataType="CreateTicketRequest" />
+        </params>
+      </api>
+      <api method="GET" url="/tickets/{ticketId}" className="com.ticketdesk.controller.TicketController" methodName="getTicketById" moduleName="ticketdesk" description="Get ticket by ID">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+      <api method="GET" url="/tickets/number/{ticketNumber}" className="com.ticketdesk.controller.TicketController" methodName="getTicketByNumber" moduleName="ticketdesk" description="Get ticket by ticket number (e.g. TKT-2026-000001)">
+        <params>
+          <param name="ticketNumber" value="test" type="PATH" dataType="String" />
+        </params>
+      </api>
+      <api method="GET" url="/tickets" className="com.ticketdesk.controller.TicketController" methodName="getAllTickets" moduleName="ticketdesk" description="Get all tickets with pagination and sorting">
+        <params>
+          <param name="page" value="" type="QUERY" dataType="int" />
+          <param name="size" value="" type="QUERY" dataType="int" />
+          <param name="sortBy" value="" type="QUERY" dataType="String" />
+          <param name="sortDir" value="" type="QUERY" dataType="String" />
+        </params>
+      </api>
+      <api method="GET" url="/tickets/my-tickets" className="com.ticketdesk.controller.TicketController" methodName="getMyTickets" moduleName="ticketdesk" description="Get tickets created by the current user">
+        <params>
+          <param name="page" value="" type="QUERY" dataType="int" />
+          <param name="size" value="" type="QUERY" dataType="int" />
+        </params>
+      </api>
+      <api method="GET" url="/tickets/status/{status}" className="com.ticketdesk.controller.TicketController" methodName="getByStatus" moduleName="ticketdesk" description="Filter tickets by status">
+        <params>
+          <param name="status" value="1" type="PATH" dataType="TicketStatus" />
+          <param name="page" value="" type="QUERY" dataType="int" />
+          <param name="size" value="" type="QUERY" dataType="int" />
+        </params>
+      </api>
+      <api method="GET" url="/tickets/priority/{priority}" className="com.ticketdesk.controller.TicketController" methodName="getByPriority" moduleName="ticketdesk" description="Filter tickets by priority">
+        <params>
+          <param name="priority" value="1" type="PATH" dataType="TicketPriority" />
+          <param name="page" value="" type="QUERY" dataType="int" />
+          <param name="size" value="" type="QUERY" dataType="int" />
+        </params>
+      </api>
+      <api method="GET" url="/tickets/category/{category}" className="com.ticketdesk.controller.TicketController" methodName="getByCategory" moduleName="ticketdesk" description="Filter tickets by category">
+        <params>
+          <param name="category" value="1" type="PATH" dataType="TicketCategory" />
+          <param name="page" value="" type="QUERY" dataType="int" />
+          <param name="size" value="" type="QUERY" dataType="int" />
+        </params>
+      </api>
+      <api method="PUT" url="/tickets/{ticketId}" className="com.ticketdesk.controller.TicketController" methodName="updateTicket" moduleName="ticketdesk" description="Update ticket details">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+          <param name="body" value="{&#13;&#10;  &quot;title&quot; : &quot;&quot;,&#13;&#10;  &quot;description&quot; : &quot;&quot;,&#13;&#10;  &quot;category&quot; : &quot;SOFTWARE&quot;,&#13;&#10;  &quot;priority&quot; : &quot;LOW&quot;&#13;&#10;}" type="BODY" dataType="UpdateTicketRequest" />
+        </params>
+      </api>
+      <api method="DELETE" url="/tickets/{ticketId}" className="com.ticketdesk.controller.TicketController" methodName="deleteTicket" moduleName="ticketdesk" description="Delete a ticket (Admin or ticket creator)">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+      <api method="PATCH" url="/tickets/{ticketId}/assign" className="com.ticketdesk.controller.TicketController" methodName="assignEngineer" moduleName="ticketdesk" description="Assign ticket to a support engineer (Admin/Engineer)">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+          <param name="body" value="{&#13;&#10;  &quot;engineerId&quot; : 0&#13;&#10;}" type="BODY" dataType="AssignTicketRequest" />
+        </params>
+      </api>
+      <api method="PATCH" url="/tickets/{ticketId}/status" className="com.ticketdesk.controller.TicketController" methodName="updateStatus" moduleName="ticketdesk" description="Update ticket status with lifecycle validation">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+          <param name="body" value="{&#13;&#10;  &quot;status&quot; : &quot;OPEN&quot;&#13;&#10;}" type="BODY" dataType="UpdateStatusRequest" />
+        </params>
+      </api>
+      <api method="POST" url="/tickets/{ticketId}/attachments" className="com.ticketdesk.controller.AttachmentController" methodName="uploadAttachment" moduleName="ticketdesk" description="Upload an attachment for a ticket (one per ticket)">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+          <param name="file" value="" type="QUERY" dataType="MultipartFile" />
+        </params>
+      </api>
+      <api method="PUT" url="/tickets/{ticketId}/attachments" className="com.ticketdesk.controller.AttachmentController" methodName="replaceAttachment" moduleName="ticketdesk" description="Replace the attachment on a ticket">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+          <param name="file" value="" type="QUERY" dataType="MultipartFile" />
+        </params>
+      </api>
+      <api method="GET" url="/tickets/{ticketId}/attachments" className="com.ticketdesk.controller.AttachmentController" methodName="getAttachmentByTicket" moduleName="ticketdesk" description="Get attachment metadata by ticket ID">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+      <api method="GET" url="/attachments/{attachmentId}" className="com.ticketdesk.controller.AttachmentController" methodName="getAttachmentById" moduleName="ticketdesk" description="Get attachment metadata by attachment ID">
+        <params>
+          <param name="attachmentId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+      <api method="GET" url="/attachments/{attachmentId}/download" className="com.ticketdesk.controller.AttachmentController" methodName="downloadAttachment" moduleName="ticketdesk" description="Download file by attachment ID">
+        <params>
+          <param name="attachmentId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+      <api method="DELETE" url="/tickets/{ticketId}/attachments" className="com.ticketdesk.controller.AttachmentController" methodName="deleteAttachment" moduleName="ticketdesk" description="Delete the attachment from a ticket">
+        <params>
+          <param name="ticketId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+      <api method="GET" url="/users/me" className="com.ticketdesk.controller.UserController" methodName="getCurrentUser" moduleName="ticketdesk" description="Get current user profile" />
+      <api method="POST" url="/users" className="com.ticketdesk.controller.UserController" methodName="createUser" moduleName="ticketdesk" description="Create a new user (Admin only)">
+        <params>
+          <param name="body" value="{&#13;&#10;  &quot;firstName&quot; : &quot;&quot;,&#13;&#10;  &quot;lastName&quot; : &quot;&quot;,&#13;&#10;  &quot;username&quot; : &quot;&quot;,&#13;&#10;  &quot;email&quot; : &quot;&quot;,&#13;&#10;  &quot;password&quot; : &quot;&quot;,&#13;&#10;  &quot;phone&quot; : &quot;&quot;,&#13;&#10;  &quot;department&quot; : &quot;&quot;,&#13;&#10;  &quot;role&quot; : &quot;ADMIN&quot;&#13;&#10;}" type="BODY" dataType="RegisterRequest" />
+        </params>
+      </api>
+      <api method="GET" url="/users/{userId}" className="com.ticketdesk.controller.UserController" methodName="getUserById" moduleName="ticketdesk" description="Get user by ID">
+        <params>
+          <param name="userId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+      <api method="GET" url="/users" className="com.ticketdesk.controller.UserController" methodName="getAllUsers" moduleName="ticketdesk" description="Get all users with pagination and sorting (Admin/Engineer)">
+        <params>
+          <param name="page" value="" type="QUERY" dataType="int" />
+          <param name="size" value="" type="QUERY" dataType="int" />
+          <param name="sortBy" value="" type="QUERY" dataType="String" />
+          <param name="sortDir" value="" type="QUERY" dataType="String" />
+        </params>
+      </api>
+      <api method="GET" url="/users/search" className="com.ticketdesk.controller.UserController" methodName="searchUsers" moduleName="ticketdesk" description="Search users by name, email, username, role, or active status">
+        <params>
+          <param name="search" value="" type="QUERY" dataType="String" />
+          <param name="role" value="" type="QUERY" dataType="Role" />
+          <param name="active" value="" type="QUERY" dataType="Boolean" />
+          <param name="page" value="" type="QUERY" dataType="int" />
+          <param name="size" value="" type="QUERY" dataType="int" />
+        </params>
+      </api>
+      <api method="PUT" url="/users/{userId}" className="com.ticketdesk.controller.UserController" methodName="updateUser" moduleName="ticketdesk" description="Update user (Admin only)">
+        <params>
+          <param name="userId" value="1" type="PATH" dataType="Long" />
+          <param name="body" value="{&#13;&#10;  &quot;firstName&quot; : &quot;&quot;,&#13;&#10;  &quot;lastName&quot; : &quot;&quot;,&#13;&#10;  &quot;phone&quot; : &quot;&quot;,&#13;&#10;  &quot;department&quot; : &quot;&quot;,&#13;&#10;  &quot;role&quot; : &quot;ADMIN&quot;&#13;&#10;}" type="BODY" dataType="UpdateUserRequest" />
+        </params>
+      </api>
+      <api method="DELETE" url="/users/{userId}" className="com.ticketdesk.controller.UserController" methodName="deleteUser" moduleName="ticketdesk" description="Delete user (Admin only)">
+        <params>
+          <param name="userId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+      <api method="PATCH" url="/users/{userId}/activate" className="com.ticketdesk.controller.UserController" methodName="activateUser" moduleName="ticketdesk" description="Activate a deactivated user (Admin only)">
+        <params>
+          <param name="userId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+      <api method="PATCH" url="/users/{userId}/deactivate" className="com.ticketdesk.controller.UserController" methodName="deactivateUser" moduleName="ticketdesk" description="Deactivate a user (Admin only)">
+        <params>
+          <param name="userId" value="1" type="PATH" dataType="Long" />
+        </params>
+      </api>
+    </cachedApis>
+  </component>
+</project>
